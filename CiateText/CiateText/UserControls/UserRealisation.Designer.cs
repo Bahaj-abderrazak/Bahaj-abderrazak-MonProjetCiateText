@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserRealisation));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CmbModule = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,10 +41,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Btn_Vider = new Bunifu.Framework.UI.BunifuFlatButton();
             this.listSTG = new System.Windows.Forms.ListBox();
+            this.Btn_Vider = new Bunifu.Framework.UI.BunifuFlatButton();
             this.label7 = new System.Windows.Forms.Label();
+            this.DGV = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.SuspendLayout();
             // 
             // CmbModule
@@ -165,10 +168,24 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.listSTG);
-            this.panel1.Location = new System.Drawing.Point(478, 139);
+            this.panel1.Location = new System.Drawing.Point(520, 159);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(404, 511);
+            this.panel1.Size = new System.Drawing.Size(279, 264);
             this.panel1.TabIndex = 48;
+            // 
+            // listSTG
+            // 
+            this.listSTG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.listSTG.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listSTG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listSTG.ForeColor = System.Drawing.SystemColors.Window;
+            this.listSTG.FormattingEnabled = true;
+            this.listSTG.ItemHeight = 20;
+            this.listSTG.Location = new System.Drawing.Point(0, 0);
+            this.listSTG.Name = "listSTG";
+            this.listSTG.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listSTG.Size = new System.Drawing.Size(279, 264);
+            this.listSTG.TabIndex = 0;
             // 
             // Btn_Vider
             // 
@@ -192,7 +209,7 @@
             this.Btn_Vider.IconVisible = true;
             this.Btn_Vider.IconZoom = 80D;
             this.Btn_Vider.IsTab = false;
-            this.Btn_Vider.Location = new System.Drawing.Point(145, 554);
+            this.Btn_Vider.Location = new System.Drawing.Point(321, 243);
             this.Btn_Vider.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Vider.MaximumSize = new System.Drawing.Size(174, 48);
             this.Btn_Vider.MinimumSize = new System.Drawing.Size(174, 48);
@@ -209,20 +226,6 @@
             this.Btn_Vider.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Vider.Click += new System.EventHandler(this.BtnValid_Click);
             // 
-            // listSTG
-            // 
-            this.listSTG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.listSTG.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listSTG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listSTG.ForeColor = System.Drawing.SystemColors.Window;
-            this.listSTG.FormattingEnabled = true;
-            this.listSTG.ItemHeight = 20;
-            this.listSTG.Location = new System.Drawing.Point(0, 0);
-            this.listSTG.Name = "listSTG";
-            this.listSTG.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listSTG.Size = new System.Drawing.Size(404, 511);
-            this.listSTG.TabIndex = 0;
-            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -236,11 +239,22 @@
             this.label7.TabIndex = 91;
             this.label7.Text = "* Sélectionner tout les stagiaire qui Absence";
             // 
+            // DGV
+            // 
+            this.DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV.Location = new System.Drawing.Point(0, 488);
+            this.DGV.Name = "DGV";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DGV.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV.Size = new System.Drawing.Size(950, 158);
+            this.DGV.TabIndex = 92;
+            // 
             // UserRealisation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Controls.Add(this.DGV);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.Btn_Vider);
             this.Controls.Add(this.label5);
@@ -259,6 +273,7 @@
             this.Size = new System.Drawing.Size(950, 653);
             this.Load += new System.EventHandler(this.UserRealisation_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +295,6 @@
         private Bunifu.Framework.UI.BunifuFlatButton Btn_Vider;
         private System.Windows.Forms.ListBox listSTG;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView DGV;
     }
 }

@@ -18,7 +18,7 @@ namespace CiateText
             InitializeComponent();
         }
 
-        private void button12_Click(object sender, EventArgs e) => this.panel1.Width = (this.panel1.Width == 50) ? 210 : 50;
+        private void button12_Click(object sender, EventArgs e) => this.panel1.Width = (this.panel1.Width == 50) ? 238 : 50;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -41,7 +41,7 @@ namespace CiateText
 
         private void button3_Click(object sender, EventArgs e)
         {
-            panel3.Top = 212;
+            panel3.Top = 207;
             CONTAIN.Controls.Clear();
             UserProfile user = new UserProfile();
             user.Dock = DockStyle.Fill;
@@ -50,7 +50,7 @@ namespace CiateText
         }
         private void BtnKey_Click(object sender, EventArgs e)
         {
-            panel3.Top = 255;
+            panel3.Top = 244;
             CONTAIN.Controls.Clear();
             UserEditProf user = new UserEditProf();
             user.Dock = DockStyle.Fill;
@@ -59,7 +59,7 @@ namespace CiateText
 
         private void button4_Click(object sender, EventArgs e)
         {
-            panel3.Top = 173;
+            panel3.Top = 170;
             UserRealisation user = new UserRealisation(NomGroup, Fillier);
             user.Dock = DockStyle.Fill;
             CONTAIN.Controls.Clear();
@@ -114,8 +114,17 @@ namespace CiateText
 
         private void Imprem_Click(object sender, EventArgs e)
         {
-            panel3.Top = 296;
+            panel3.Top = 281;
             UserEmploisiprem user = new UserEmploisiprem(NomGroup);
+            user.Dock = DockStyle.Fill;
+            CONTAIN.Controls.Clear();
+            CONTAIN.Controls.Add(user);
+        }
+
+        private void BtnImremierRe_Click(object sender, EventArgs e)
+        {
+            panel3.Top = 319;
+            UserRealisationImpre user = new UserRealisationImpre(NomGroup);
             user.Dock = DockStyle.Fill;
             CONTAIN.Controls.Clear();
             CONTAIN.Controls.Add(user);

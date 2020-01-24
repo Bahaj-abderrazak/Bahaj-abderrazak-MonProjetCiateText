@@ -27,6 +27,7 @@ namespace CiateText
 
         private void UserRealisation_Load(object sender, EventArgs e)
         {
+
             ///
             /// les Joure
             /// 
@@ -61,17 +62,17 @@ namespace CiateText
                                  where G.Nom == Nom
                                  select new {S.NumInscription,S.Nom,S.Prenom,S.NumeroGroupe}
                                  ).ToList();
-            List<CustomerSTG> stg = new List<CustomerSTG>();
+            List<CustomerSTG> stgs = new List<CustomerSTG>();
             foreach(var item in list)
             {
-                stg.Add(new CustomerSTG
+                stgs.Add(new CustomerSTG
                 {
                     NumInscription = item.NumInscription,
                     NomPrenom = item.Nom + " " + item.Prenom,
                     NumeroGroupe=item.NumeroGroupe
                 });
             }
-            listSTG.DataSource = stg;
+            listSTG.DataSource = stgs;
         }
 
         private void BtnValid_Click(object sender, EventArgs e)
@@ -86,7 +87,7 @@ namespace CiateText
                 MessageBox.Show("Pas de Model Pour Realisation ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if(txtContenu.Text == "")
+            if(string.IsNullOrEmpty(txtContenu.Text))
             {
                 MessageBox.Show("Remplire Case  Contenu", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -95,6 +96,7 @@ namespace CiateText
             if (listSTG.SelectedItems.Count == 0)
             {
                 stgs = null;
+                MessageBox.Show("Test");
             }
             else
             {
@@ -109,8 +111,21 @@ namespace CiateText
                         NumInscription = ((CustomerSTG)item).NumInscription
                     });
                 }
-            }
 
+                Realisation realis = new Realisation
+                {
+                    Contenu = txtContenu.Text,
+                    Stagiaires = stgs,
+                    NumeroModule = int.Parse(CmbJour.SelectedValue + ""),
+                    IdET = int.Parse(CmbJour.SelectedValue + ""),
+                    DateRealisation = DTPDateRailisation.Value
+                };
+                Login.db.Realisations.Add(realis);
+                Login.db.SaveChanges();
+                //MessageBox.Show("Contenu  "+realis.Contenu + "  " +realis.DateRealisation+ "  " +realis.IdET+ "  " +realis.+ "  ");
+
+            }
+            /*
             try
             {
                 Login.db.Realisations.Add(new DATA.Realisation
@@ -119,7 +134,8 @@ namespace CiateText
                     DateRealisation = DTPDateRailisation.Value,
                     IdET = int.Parse(CmbJour.SelectedValue + ""),
                     NumeroModule = int.Parse(CmbJour.SelectedValue + ""),
-                    Stagiaires = stgs
+                    Stagiaires = stgs,
+                    IdRealisation
 
                 });
                 Login.db.SaveChanges();
@@ -128,7 +144,7 @@ namespace CiateText
             catch
             {
                 MessageBox.Show("Error dans le enregistrement des informations ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            }*/
         }
     }
 }
