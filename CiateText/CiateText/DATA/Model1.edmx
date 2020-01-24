@@ -1,0 +1,1108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_cahier_texteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Absence">
+          <Key>
+            <PropertyRef Name="IdRealisation" />
+            <PropertyRef Name="NumInscription" />
+          </Key>
+          <Property Name="IdRealisation" Type="int" Nullable="false" />
+          <Property Name="NumInscription" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Affectation">
+          <Key>
+            <PropertyRef Name="Matricule" />
+            <PropertyRef Name="NumeroGroupe" />
+            <PropertyRef Name="NumeroModule" />
+          </Key>
+          <Property Name="Matricule" Type="int" Nullable="false" />
+          <Property Name="NumeroGroupe" Type="int" Nullable="false" />
+          <Property Name="NumeroModule" Type="int" Nullable="false" />
+          <Property Name="Annee" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DirectionRegionale">
+          <Key>
+            <PropertyRef Name="IdDr" />
+          </Key>
+          <Property Name="IdDr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmploisTemps">
+          <Key>
+            <PropertyRef Name="IdET" />
+          </Key>
+          <Property Name="IdET" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Jour" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="HeureDebut" Type="time" Precision="7" Nullable="false" />
+          <Property Name="HeureFin" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Matricule" Type="int" Nullable="false" />
+          <Property Name="NumeroGroupe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Etablissement">
+          <Key>
+            <PropertyRef Name="IdEtablissement" />
+          </Key>
+          <Property Name="IdEtablissement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="255" />
+          <Property Name="IdDr" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Filiere">
+          <Key>
+            <PropertyRef Name="CodeFiliere" />
+          </Key>
+          <Property Name="CodeFiliere" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="CodeNiveau" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Formateur">
+          <Key>
+            <PropertyRef Name="Matricule" />
+          </Key>
+          <Property Name="Matricule" Type="int" Nullable="false" />
+          <Property Name="Cin" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groupe">
+          <Key>
+            <PropertyRef Name="NumeroGroupe" />
+          </Key>
+          <Property Name="NumeroGroupe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Annee" Type="int" Nullable="false" />
+          <Property Name="IdTF" Type="int" Nullable="false" />
+          <Property Name="IdMF" Type="int" Nullable="false" />
+          <Property Name="IdEtablissement" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jour">
+          <Key>
+            <PropertyRef Name="Jour" />
+          </Key>
+          <Property Name="Jour" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModeFormation">
+          <Key>
+            <PropertyRef Name="IdMF" />
+          </Key>
+          <Property Name="IdMF" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="NumeroModule" />
+          </Key>
+          <Property Name="NumeroModule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodeModule" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="99" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModuleFiliere">
+          <Key>
+            <PropertyRef Name="IdMF" />
+          </Key>
+          <Property Name="IdMF" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodeFiliere" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NumeroModule" Type="int" Nullable="false" />
+          <Property Name="Annee" Type="int" Nullable="false" />
+          <Property Name="MasseHoraire" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Niveau">
+          <Key>
+            <PropertyRef Name="CodeNiveau" />
+          </Key>
+          <Property Name="CodeNiveau" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Realisation">
+          <Key>
+            <PropertyRef Name="IdRealisation" />
+          </Key>
+          <Property Name="IdRealisation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateRealisation" Type="date" Nullable="false" />
+          <Property Name="IdET" Type="int" Nullable="false" />
+          <Property Name="NumeroModule" Type="int" Nullable="false" />
+          <Property Name="Contenu" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stagiaire">
+          <Key>
+            <PropertyRef Name="NumInscription" />
+          </Key>
+          <Property Name="NumInscription" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumeroGroupe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeFormation">
+          <Key>
+            <PropertyRef Name="IdTF" />
+          </Key>
+          <Property Name="IdTF" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="35" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Absence__IdReali__4AB81AF0">
+          <End Role="Realisation" Type="Self.Realisation" Multiplicity="1" />
+          <End Role="Absence" Type="Self.Absence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realisation">
+              <PropertyRef Name="IdRealisation" />
+            </Principal>
+            <Dependent Role="Absence">
+              <PropertyRef Name="IdRealisation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Absence__NumInsc__4BAC3F29">
+          <End Role="Stagiaire" Type="Self.Stagiaire" Multiplicity="1" />
+          <End Role="Absence" Type="Self.Absence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stagiaire">
+              <PropertyRef Name="NumInscription" />
+            </Principal>
+            <Dependent Role="Absence">
+              <PropertyRef Name="NumInscription" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Affectati__Matri__398D8EEE">
+          <End Role="Formateur" Type="Self.Formateur" Multiplicity="1" />
+          <End Role="Affectation" Type="Self.Affectation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formateur">
+              <PropertyRef Name="Matricule" />
+            </Principal>
+            <Dependent Role="Affectation">
+              <PropertyRef Name="Matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Affectati__Numer__3A81B327">
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="1" />
+          <End Role="Affectation" Type="Self.Affectation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="NumeroGroupe" />
+            </Principal>
+            <Dependent Role="Affectation">
+              <PropertyRef Name="NumeroGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Affectati__Numer__3B75D760">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="Affectation" Type="Self.Affectation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="NumeroModule" />
+            </Principal>
+            <Dependent Role="Affectation">
+              <PropertyRef Name="NumeroModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmploisTe__Matri__4316F928">
+          <End Role="Formateur" Type="Self.Formateur" Multiplicity="1" />
+          <End Role="EmploisTemps" Type="Self.EmploisTemps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formateur">
+              <PropertyRef Name="Matricule" />
+            </Principal>
+            <Dependent Role="EmploisTemps">
+              <PropertyRef Name="Matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmploisTe__Numer__440B1D61">
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="1" />
+          <End Role="EmploisTemps" Type="Self.EmploisTemps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="NumeroGroupe" />
+            </Principal>
+            <Dependent Role="EmploisTemps">
+              <PropertyRef Name="NumeroGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmploisTem__Jour__403A8C7D">
+          <End Role="Jour" Type="Self.Jour" Multiplicity="1" />
+          <End Role="EmploisTemps" Type="Self.EmploisTemps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jour">
+              <PropertyRef Name="Jour" />
+            </Principal>
+            <Dependent Role="EmploisTemps">
+              <PropertyRef Name="Jour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Etablissem__IdDr__145C0A3F">
+          <End Role="DirectionRegionale" Type="Self.DirectionRegionale" Multiplicity="1" />
+          <End Role="Etablissement" Type="Self.Etablissement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DirectionRegionale">
+              <PropertyRef Name="IdDr" />
+            </Principal>
+            <Dependent Role="Etablissement">
+              <PropertyRef Name="IdDr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Filiere__CodeNiv__239E4DCF">
+          <End Role="Niveau" Type="Self.Niveau" Multiplicity="1" />
+          <End Role="Filiere" Type="Self.Filiere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niveau">
+              <PropertyRef Name="CodeNiveau" />
+            </Principal>
+            <Dependent Role="Filiere">
+              <PropertyRef Name="CodeNiveau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groupe__IdEtabli__2B3F6F97">
+          <End Role="Etablissement" Type="Self.Etablissement" Multiplicity="1" />
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etablissement">
+              <PropertyRef Name="IdEtablissement" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="IdEtablissement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groupe__IdMF__2A4B4B5E">
+          <End Role="ModeFormation" Type="Self.ModeFormation" Multiplicity="1" />
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModeFormation">
+              <PropertyRef Name="IdMF" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="IdMF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groupe__IdTF__29572725">
+          <End Role="TypeFormation" Type="Self.TypeFormation" Multiplicity="1" />
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFormation">
+              <PropertyRef Name="IdTF" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="IdTF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModuleFil__CodeF__32E0915F">
+          <End Role="Filiere" Type="Self.Filiere" Multiplicity="1" />
+          <End Role="ModuleFiliere" Type="Self.ModuleFiliere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filiere">
+              <PropertyRef Name="CodeFiliere" />
+            </Principal>
+            <Dependent Role="ModuleFiliere">
+              <PropertyRef Name="CodeFiliere" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModuleFil__Numer__33D4B598">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="ModuleFiliere" Type="Self.ModuleFiliere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="NumeroModule" />
+            </Principal>
+            <Dependent Role="ModuleFiliere">
+              <PropertyRef Name="NumeroModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realisati__Numer__47DBAE45">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="Realisation" Type="Self.Realisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="NumeroModule" />
+            </Principal>
+            <Dependent Role="Realisation">
+              <PropertyRef Name="NumeroModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realisatio__IdET__46E78A0C">
+          <End Role="EmploisTemps" Type="Self.EmploisTemps" Multiplicity="1" />
+          <End Role="Realisation" Type="Self.Realisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmploisTemps">
+              <PropertyRef Name="IdET" />
+            </Principal>
+            <Dependent Role="Realisation">
+              <PropertyRef Name="IdET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stagiaire__Numer__2E1BDC42">
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="1" />
+          <End Role="Stagiaire" Type="Self.Stagiaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="NumeroGroupe" />
+            </Principal>
+            <Dependent Role="Stagiaire">
+              <PropertyRef Name="NumeroGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_cahier_texteModelStoreContainer">
+          <EntitySet Name="Absence" EntityType="Self.Absence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Affectation" EntityType="Self.Affectation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DirectionRegionale" EntityType="Self.DirectionRegionale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmploisTemps" EntityType="Self.EmploisTemps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Etablissement" EntityType="Self.Etablissement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Filiere" EntityType="Self.Filiere" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Formateur" EntityType="Self.Formateur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groupe" EntityType="Self.Groupe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jour" EntityType="Self.Jour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModeFormation" EntityType="Self.ModeFormation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModuleFiliere" EntityType="Self.ModuleFiliere" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Niveau" EntityType="Self.Niveau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Realisation" EntityType="Self.Realisation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stagiaire" EntityType="Self.Stagiaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeFormation" EntityType="Self.TypeFormation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Absence__IdReali__4AB81AF0" Association="Self.FK__Absence__IdReali__4AB81AF0">
+            <End Role="Realisation" EntitySet="Realisation" />
+            <End Role="Absence" EntitySet="Absence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Absence__NumInsc__4BAC3F29" Association="Self.FK__Absence__NumInsc__4BAC3F29">
+            <End Role="Stagiaire" EntitySet="Stagiaire" />
+            <End Role="Absence" EntitySet="Absence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Affectati__Matri__398D8EEE" Association="Self.FK__Affectati__Matri__398D8EEE">
+            <End Role="Formateur" EntitySet="Formateur" />
+            <End Role="Affectation" EntitySet="Affectation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Affectati__Numer__3A81B327" Association="Self.FK__Affectati__Numer__3A81B327">
+            <End Role="Groupe" EntitySet="Groupe" />
+            <End Role="Affectation" EntitySet="Affectation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Affectati__Numer__3B75D760" Association="Self.FK__Affectati__Numer__3B75D760">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Affectation" EntitySet="Affectation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmploisTe__Matri__4316F928" Association="Self.FK__EmploisTe__Matri__4316F928">
+            <End Role="Formateur" EntitySet="Formateur" />
+            <End Role="EmploisTemps" EntitySet="EmploisTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmploisTe__Numer__440B1D61" Association="Self.FK__EmploisTe__Numer__440B1D61">
+            <End Role="Groupe" EntitySet="Groupe" />
+            <End Role="EmploisTemps" EntitySet="EmploisTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmploisTem__Jour__403A8C7D" Association="Self.FK__EmploisTem__Jour__403A8C7D">
+            <End Role="Jour" EntitySet="Jour" />
+            <End Role="EmploisTemps" EntitySet="EmploisTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Etablissem__IdDr__145C0A3F" Association="Self.FK__Etablissem__IdDr__145C0A3F">
+            <End Role="DirectionRegionale" EntitySet="DirectionRegionale" />
+            <End Role="Etablissement" EntitySet="Etablissement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Filiere__CodeNiv__239E4DCF" Association="Self.FK__Filiere__CodeNiv__239E4DCF">
+            <End Role="Niveau" EntitySet="Niveau" />
+            <End Role="Filiere" EntitySet="Filiere" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groupe__IdEtabli__2B3F6F97" Association="Self.FK__Groupe__IdEtabli__2B3F6F97">
+            <End Role="Etablissement" EntitySet="Etablissement" />
+            <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groupe__IdMF__2A4B4B5E" Association="Self.FK__Groupe__IdMF__2A4B4B5E">
+            <End Role="ModeFormation" EntitySet="ModeFormation" />
+            <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groupe__IdTF__29572725" Association="Self.FK__Groupe__IdTF__29572725">
+            <End Role="TypeFormation" EntitySet="TypeFormation" />
+            <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModuleFil__CodeF__32E0915F" Association="Self.FK__ModuleFil__CodeF__32E0915F">
+            <End Role="Filiere" EntitySet="Filiere" />
+            <End Role="ModuleFiliere" EntitySet="ModuleFiliere" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModuleFil__Numer__33D4B598" Association="Self.FK__ModuleFil__Numer__33D4B598">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleFiliere" EntitySet="ModuleFiliere" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realisati__Numer__47DBAE45" Association="Self.FK__Realisati__Numer__47DBAE45">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Realisation" EntitySet="Realisation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realisatio__IdET__46E78A0C" Association="Self.FK__Realisatio__IdET__46E78A0C">
+            <End Role="EmploisTemps" EntitySet="EmploisTemps" />
+            <End Role="Realisation" EntitySet="Realisation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stagiaire__Numer__2E1BDC42" Association="Self.FK__Stagiaire__Numer__2E1BDC42">
+            <End Role="Groupe" EntitySet="Groupe" />
+            <End Role="Stagiaire" EntitySet="Stagiaire" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_cahier_texteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Affectation">
+          <Key>
+            <PropertyRef Name="Matricule" />
+            <PropertyRef Name="NumeroGroupe" />
+            <PropertyRef Name="NumeroModule" />
+          </Key>
+          <Property Name="Matricule" Type="Int32" Nullable="false" />
+          <Property Name="NumeroGroupe" Type="Int32" Nullable="false" />
+          <Property Name="NumeroModule" Type="Int32" Nullable="false" />
+          <Property Name="Annee" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Formateur" Relationship="Self.FK__Affectati__Matri__398D8EEE" FromRole="Affectation" ToRole="Formateur" />
+          <NavigationProperty Name="Groupe" Relationship="Self.FK__Affectati__Numer__3A81B327" FromRole="Affectation" ToRole="Groupe" />
+          <NavigationProperty Name="Module" Relationship="Self.FK__Affectati__Numer__3B75D760" FromRole="Affectation" ToRole="Module" />
+        </EntityType>
+        <EntityType Name="DirectionRegionale">
+          <Key>
+            <PropertyRef Name="IdDr" />
+          </Key>
+          <Property Name="IdDr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Etablissements" Relationship="Self.FK__Etablissem__IdDr__145C0A3F" FromRole="DirectionRegionale" ToRole="Etablissement" />
+        </EntityType>
+        <EntityType Name="EmploisTemp">
+          <Key>
+            <PropertyRef Name="IdET" />
+          </Key>
+          <Property Name="IdET" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Jour" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HeureDebut" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="HeureFin" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Matricule" Type="Int32" Nullable="false" />
+          <Property Name="NumeroGroupe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Formateur" Relationship="Self.FK__EmploisTe__Matri__4316F928" FromRole="EmploisTemps" ToRole="Formateur" />
+          <NavigationProperty Name="Groupe" Relationship="Self.FK__EmploisTe__Numer__440B1D61" FromRole="EmploisTemps" ToRole="Groupe" />
+          <NavigationProperty Name="Jour1" Relationship="Self.FK__EmploisTem__Jour__403A8C7D" FromRole="EmploisTemps" ToRole="Jour" />
+          <NavigationProperty Name="Realisations" Relationship="Self.FK__Realisatio__IdET__46E78A0C" FromRole="EmploisTemps" ToRole="Realisation" />
+        </EntityType>
+        <EntityType Name="Etablissement">
+          <Key>
+            <PropertyRef Name="IdEtablissement" />
+          </Key>
+          <Property Name="IdEtablissement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdDr" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DirectionRegionale" Relationship="Self.FK__Etablissem__IdDr__145C0A3F" FromRole="Etablissement" ToRole="DirectionRegionale" />
+          <NavigationProperty Name="Groupes" Relationship="Self.FK__Groupe__IdEtabli__2B3F6F97" FromRole="Etablissement" ToRole="Groupe" />
+        </EntityType>
+        <EntityType Name="Filiere">
+          <Key>
+            <PropertyRef Name="CodeFiliere" />
+          </Key>
+          <Property Name="CodeFiliere" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodeNiveau" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Niveau" Relationship="Self.FK__Filiere__CodeNiv__239E4DCF" FromRole="Filiere" ToRole="Niveau" />
+          <NavigationProperty Name="ModuleFilieres" Relationship="Self.FK__ModuleFil__CodeF__32E0915F" FromRole="Filiere" ToRole="ModuleFiliere" />
+        </EntityType>
+        <EntityType Name="Formateur">
+          <Key>
+            <PropertyRef Name="Matricule" />
+          </Key>
+          <Property Name="Matricule" Type="Int32" Nullable="false" />
+          <Property Name="Cin" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Affectations" Relationship="Self.FK__Affectati__Matri__398D8EEE" FromRole="Formateur" ToRole="Affectation" />
+          <NavigationProperty Name="EmploisTemps" Relationship="Self.FK__EmploisTe__Matri__4316F928" FromRole="Formateur" ToRole="EmploisTemps" />
+        </EntityType>
+        <EntityType Name="Groupe">
+          <Key>
+            <PropertyRef Name="NumeroGroupe" />
+          </Key>
+          <Property Name="NumeroGroupe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Annee" Type="Int32" Nullable="false" />
+          <Property Name="IdTF" Type="Int32" Nullable="false" />
+          <Property Name="IdMF" Type="Int32" Nullable="false" />
+          <Property Name="IdEtablissement" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Affectations" Relationship="Self.FK__Affectati__Numer__3A81B327" FromRole="Groupe" ToRole="Affectation" />
+          <NavigationProperty Name="EmploisTemps" Relationship="Self.FK__EmploisTe__Numer__440B1D61" FromRole="Groupe" ToRole="EmploisTemps" />
+          <NavigationProperty Name="Etablissement" Relationship="Self.FK__Groupe__IdEtabli__2B3F6F97" FromRole="Groupe" ToRole="Etablissement" />
+          <NavigationProperty Name="ModeFormation" Relationship="Self.FK__Groupe__IdMF__2A4B4B5E" FromRole="Groupe" ToRole="ModeFormation" />
+          <NavigationProperty Name="TypeFormation" Relationship="Self.FK__Groupe__IdTF__29572725" FromRole="Groupe" ToRole="TypeFormation" />
+          <NavigationProperty Name="Stagiaires" Relationship="Self.FK__Stagiaire__Numer__2E1BDC42" FromRole="Groupe" ToRole="Stagiaire" />
+        </EntityType>
+        <EntityType Name="Jour">
+          <Key>
+            <PropertyRef Name="Jour1" />
+          </Key>
+          <Property Name="Jour1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EmploisTemps" Relationship="Self.FK__EmploisTem__Jour__403A8C7D" FromRole="Jour" ToRole="EmploisTemps" />
+        </EntityType>
+        <EntityType Name="ModeFormation">
+          <Key>
+            <PropertyRef Name="IdMF" />
+          </Key>
+          <Property Name="IdMF" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Groupes" Relationship="Self.FK__Groupe__IdMF__2A4B4B5E" FromRole="ModeFormation" ToRole="Groupe" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="NumeroModule" />
+          </Key>
+          <Property Name="NumeroModule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodeModule" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Affectations" Relationship="Self.FK__Affectati__Numer__3B75D760" FromRole="Module" ToRole="Affectation" />
+          <NavigationProperty Name="ModuleFilieres" Relationship="Self.FK__ModuleFil__Numer__33D4B598" FromRole="Module" ToRole="ModuleFiliere" />
+          <NavigationProperty Name="Realisations" Relationship="Self.FK__Realisati__Numer__47DBAE45" FromRole="Module" ToRole="Realisation" />
+        </EntityType>
+        <EntityType Name="ModuleFiliere">
+          <Key>
+            <PropertyRef Name="IdMF" />
+          </Key>
+          <Property Name="IdMF" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodeFiliere" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroModule" Type="Int32" Nullable="false" />
+          <Property Name="Annee" Type="Int32" Nullable="false" />
+          <Property Name="MasseHoraire" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Filiere" Relationship="Self.FK__ModuleFil__CodeF__32E0915F" FromRole="ModuleFiliere" ToRole="Filiere" />
+          <NavigationProperty Name="Module" Relationship="Self.FK__ModuleFil__Numer__33D4B598" FromRole="ModuleFiliere" ToRole="Module" />
+        </EntityType>
+        <EntityType Name="Niveau">
+          <Key>
+            <PropertyRef Name="CodeNiveau" />
+          </Key>
+          <Property Name="CodeNiveau" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Filieres" Relationship="Self.FK__Filiere__CodeNiv__239E4DCF" FromRole="Niveau" ToRole="Filiere" />
+        </EntityType>
+        <EntityType Name="Realisation">
+          <Key>
+            <PropertyRef Name="IdRealisation" />
+          </Key>
+          <Property Name="IdRealisation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateRealisation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdET" Type="Int32" Nullable="false" />
+          <Property Name="NumeroModule" Type="Int32" Nullable="false" />
+          <Property Name="Contenu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EmploisTemp" Relationship="Self.FK__Realisatio__IdET__46E78A0C" FromRole="Realisation" ToRole="EmploisTemps" />
+          <NavigationProperty Name="Module" Relationship="Self.FK__Realisati__Numer__47DBAE45" FromRole="Realisation" ToRole="Module" />
+          <NavigationProperty Name="Stagiaires" Relationship="Self.Absence" FromRole="Realisation" ToRole="Stagiaire" />
+        </EntityType>
+        <EntityType Name="Stagiaire">
+          <Key>
+            <PropertyRef Name="NumInscription" />
+          </Key>
+          <Property Name="NumInscription" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroGroupe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groupe" Relationship="Self.FK__Stagiaire__Numer__2E1BDC42" FromRole="Stagiaire" ToRole="Groupe" />
+          <NavigationProperty Name="Realisations" Relationship="Self.Absence" FromRole="Stagiaire" ToRole="Realisation" />
+        </EntityType>
+        <EntityType Name="TypeFormation">
+          <Key>
+            <PropertyRef Name="IdTF" />
+          </Key>
+          <Property Name="IdTF" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Groupes" Relationship="Self.FK__Groupe__IdTF__29572725" FromRole="TypeFormation" ToRole="Groupe" />
+        </EntityType>
+        <Association Name="FK__Affectati__Matri__398D8EEE">
+          <End Role="Formateur" Type="Self.Formateur" Multiplicity="1" />
+          <End Role="Affectation" Type="Self.Affectation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formateur">
+              <PropertyRef Name="Matricule" />
+            </Principal>
+            <Dependent Role="Affectation">
+              <PropertyRef Name="Matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Affectati__Numer__3A81B327">
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="1" />
+          <End Role="Affectation" Type="Self.Affectation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="NumeroGroupe" />
+            </Principal>
+            <Dependent Role="Affectation">
+              <PropertyRef Name="NumeroGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Affectati__Numer__3B75D760">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="Affectation" Type="Self.Affectation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="NumeroModule" />
+            </Principal>
+            <Dependent Role="Affectation">
+              <PropertyRef Name="NumeroModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Etablissem__IdDr__145C0A3F">
+          <End Role="DirectionRegionale" Type="Self.DirectionRegionale" Multiplicity="1" />
+          <End Role="Etablissement" Type="Self.Etablissement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DirectionRegionale">
+              <PropertyRef Name="IdDr" />
+            </Principal>
+            <Dependent Role="Etablissement">
+              <PropertyRef Name="IdDr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmploisTe__Matri__4316F928">
+          <End Role="Formateur" Type="Self.Formateur" Multiplicity="1" />
+          <End Role="EmploisTemps" Type="Self.EmploisTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formateur">
+              <PropertyRef Name="Matricule" />
+            </Principal>
+            <Dependent Role="EmploisTemps">
+              <PropertyRef Name="Matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmploisTe__Numer__440B1D61">
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="1" />
+          <End Role="EmploisTemps" Type="Self.EmploisTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="NumeroGroupe" />
+            </Principal>
+            <Dependent Role="EmploisTemps">
+              <PropertyRef Name="NumeroGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmploisTem__Jour__403A8C7D">
+          <End Role="Jour" Type="Self.Jour" Multiplicity="1" />
+          <End Role="EmploisTemps" Type="Self.EmploisTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jour">
+              <PropertyRef Name="Jour1" />
+            </Principal>
+            <Dependent Role="EmploisTemps">
+              <PropertyRef Name="Jour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realisatio__IdET__46E78A0C">
+          <End Role="EmploisTemps" Type="Self.EmploisTemp" Multiplicity="1" />
+          <End Role="Realisation" Type="Self.Realisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmploisTemps">
+              <PropertyRef Name="IdET" />
+            </Principal>
+            <Dependent Role="Realisation">
+              <PropertyRef Name="IdET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groupe__IdEtabli__2B3F6F97">
+          <End Role="Etablissement" Type="Self.Etablissement" Multiplicity="1" />
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etablissement">
+              <PropertyRef Name="IdEtablissement" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="IdEtablissement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Filiere__CodeNiv__239E4DCF">
+          <End Role="Niveau" Type="Self.Niveau" Multiplicity="1" />
+          <End Role="Filiere" Type="Self.Filiere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niveau">
+              <PropertyRef Name="CodeNiveau" />
+            </Principal>
+            <Dependent Role="Filiere">
+              <PropertyRef Name="CodeNiveau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModuleFil__CodeF__32E0915F">
+          <End Role="Filiere" Type="Self.Filiere" Multiplicity="1" />
+          <End Role="ModuleFiliere" Type="Self.ModuleFiliere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filiere">
+              <PropertyRef Name="CodeFiliere" />
+            </Principal>
+            <Dependent Role="ModuleFiliere">
+              <PropertyRef Name="CodeFiliere" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groupe__IdMF__2A4B4B5E">
+          <End Role="ModeFormation" Type="Self.ModeFormation" Multiplicity="1" />
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModeFormation">
+              <PropertyRef Name="IdMF" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="IdMF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groupe__IdTF__29572725">
+          <End Role="TypeFormation" Type="Self.TypeFormation" Multiplicity="1" />
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFormation">
+              <PropertyRef Name="IdTF" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="IdTF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stagiaire__Numer__2E1BDC42">
+          <End Role="Groupe" Type="Self.Groupe" Multiplicity="1" />
+          <End Role="Stagiaire" Type="Self.Stagiaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="NumeroGroupe" />
+            </Principal>
+            <Dependent Role="Stagiaire">
+              <PropertyRef Name="NumeroGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModuleFil__Numer__33D4B598">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="ModuleFiliere" Type="Self.ModuleFiliere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="NumeroModule" />
+            </Principal>
+            <Dependent Role="ModuleFiliere">
+              <PropertyRef Name="NumeroModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realisati__Numer__47DBAE45">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="Realisation" Type="Self.Realisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="NumeroModule" />
+            </Principal>
+            <Dependent Role="Realisation">
+              <PropertyRef Name="NumeroModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Absence">
+          <End Role="Realisation" Type="Self.Realisation" Multiplicity="*" />
+          <End Role="Stagiaire" Type="Self.Stagiaire" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="db_cahier_texteEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Affectations" EntityType="Self.Affectation" />
+          <EntitySet Name="DirectionRegionales" EntityType="Self.DirectionRegionale" />
+          <EntitySet Name="EmploisTemps" EntityType="Self.EmploisTemp" />
+          <EntitySet Name="Etablissements" EntityType="Self.Etablissement" />
+          <EntitySet Name="Filieres" EntityType="Self.Filiere" />
+          <EntitySet Name="Formateurs" EntityType="Self.Formateur" />
+          <EntitySet Name="Groupes" EntityType="Self.Groupe" />
+          <EntitySet Name="Jours" EntityType="Self.Jour" />
+          <EntitySet Name="ModeFormations" EntityType="Self.ModeFormation" />
+          <EntitySet Name="Modules" EntityType="Self.Module" />
+          <EntitySet Name="ModuleFilieres" EntityType="Self.ModuleFiliere" />
+          <EntitySet Name="Niveaux" EntityType="Self.Niveau" />
+          <EntitySet Name="Realisations" EntityType="Self.Realisation" />
+          <EntitySet Name="Stagiaires" EntityType="Self.Stagiaire" />
+          <EntitySet Name="TypeFormations" EntityType="Self.TypeFormation" />
+          <AssociationSet Name="FK__Affectati__Matri__398D8EEE" Association="Self.FK__Affectati__Matri__398D8EEE">
+            <End Role="Formateur" EntitySet="Formateurs" />
+            <End Role="Affectation" EntitySet="Affectations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Affectati__Numer__3A81B327" Association="Self.FK__Affectati__Numer__3A81B327">
+            <End Role="Groupe" EntitySet="Groupes" />
+            <End Role="Affectation" EntitySet="Affectations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Affectati__Numer__3B75D760" Association="Self.FK__Affectati__Numer__3B75D760">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="Affectation" EntitySet="Affectations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Etablissem__IdDr__145C0A3F" Association="Self.FK__Etablissem__IdDr__145C0A3F">
+            <End Role="DirectionRegionale" EntitySet="DirectionRegionales" />
+            <End Role="Etablissement" EntitySet="Etablissements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmploisTe__Matri__4316F928" Association="Self.FK__EmploisTe__Matri__4316F928">
+            <End Role="Formateur" EntitySet="Formateurs" />
+            <End Role="EmploisTemps" EntitySet="EmploisTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmploisTe__Numer__440B1D61" Association="Self.FK__EmploisTe__Numer__440B1D61">
+            <End Role="Groupe" EntitySet="Groupes" />
+            <End Role="EmploisTemps" EntitySet="EmploisTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmploisTem__Jour__403A8C7D" Association="Self.FK__EmploisTem__Jour__403A8C7D">
+            <End Role="Jour" EntitySet="Jours" />
+            <End Role="EmploisTemps" EntitySet="EmploisTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realisatio__IdET__46E78A0C" Association="Self.FK__Realisatio__IdET__46E78A0C">
+            <End Role="EmploisTemps" EntitySet="EmploisTemps" />
+            <End Role="Realisation" EntitySet="Realisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groupe__IdEtabli__2B3F6F97" Association="Self.FK__Groupe__IdEtabli__2B3F6F97">
+            <End Role="Etablissement" EntitySet="Etablissements" />
+            <End Role="Groupe" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Filiere__CodeNiv__239E4DCF" Association="Self.FK__Filiere__CodeNiv__239E4DCF">
+            <End Role="Niveau" EntitySet="Niveaux" />
+            <End Role="Filiere" EntitySet="Filieres" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModuleFil__CodeF__32E0915F" Association="Self.FK__ModuleFil__CodeF__32E0915F">
+            <End Role="Filiere" EntitySet="Filieres" />
+            <End Role="ModuleFiliere" EntitySet="ModuleFilieres" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groupe__IdMF__2A4B4B5E" Association="Self.FK__Groupe__IdMF__2A4B4B5E">
+            <End Role="ModeFormation" EntitySet="ModeFormations" />
+            <End Role="Groupe" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groupe__IdTF__29572725" Association="Self.FK__Groupe__IdTF__29572725">
+            <End Role="TypeFormation" EntitySet="TypeFormations" />
+            <End Role="Groupe" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stagiaire__Numer__2E1BDC42" Association="Self.FK__Stagiaire__Numer__2E1BDC42">
+            <End Role="Groupe" EntitySet="Groupes" />
+            <End Role="Stagiaire" EntitySet="Stagiaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModuleFil__Numer__33D4B598" Association="Self.FK__ModuleFil__Numer__33D4B598">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="ModuleFiliere" EntitySet="ModuleFilieres" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realisati__Numer__47DBAE45" Association="Self.FK__Realisati__Numer__47DBAE45">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="Realisation" EntitySet="Realisations" />
+          </AssociationSet>
+          <AssociationSet Name="Absence" Association="Self.Absence">
+            <End Role="Realisation" EntitySet="Realisations" />
+            <End Role="Stagiaire" EntitySet="Stagiaires" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="db_cahier_texteModel.User" />
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_cahier_texteModelStoreContainer" CdmEntityContainer="db_cahier_texteEntities3">
+          <EntitySetMapping Name="Affectations">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Affectation">
+              <MappingFragment StoreEntitySet="Affectation">
+                <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+                <ScalarProperty Name="NumeroGroupe" ColumnName="NumeroGroupe" />
+                <ScalarProperty Name="NumeroModule" ColumnName="NumeroModule" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DirectionRegionales">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.DirectionRegionale">
+              <MappingFragment StoreEntitySet="DirectionRegionale">
+                <ScalarProperty Name="IdDr" ColumnName="IdDr" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmploisTemps">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.EmploisTemp">
+              <MappingFragment StoreEntitySet="EmploisTemps">
+                <ScalarProperty Name="IdET" ColumnName="IdET" />
+                <ScalarProperty Name="Jour" ColumnName="Jour" />
+                <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
+                <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
+                <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+                <ScalarProperty Name="NumeroGroupe" ColumnName="NumeroGroupe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Etablissements">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Etablissement">
+              <MappingFragment StoreEntitySet="Etablissement">
+                <ScalarProperty Name="IdEtablissement" ColumnName="IdEtablissement" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="IdDr" ColumnName="IdDr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Filieres">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Filiere">
+              <MappingFragment StoreEntitySet="Filiere">
+                <ScalarProperty Name="CodeFiliere" ColumnName="CodeFiliere" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="CodeNiveau" ColumnName="CodeNiveau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formateurs">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Formateur">
+              <MappingFragment StoreEntitySet="Formateur">
+                <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+                <ScalarProperty Name="Cin" ColumnName="Cin" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groupes">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Groupe">
+              <MappingFragment StoreEntitySet="Groupe">
+                <ScalarProperty Name="NumeroGroupe" ColumnName="NumeroGroupe" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+                <ScalarProperty Name="IdTF" ColumnName="IdTF" />
+                <ScalarProperty Name="IdMF" ColumnName="IdMF" />
+                <ScalarProperty Name="IdEtablissement" ColumnName="IdEtablissement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jours">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Jour">
+              <MappingFragment StoreEntitySet="Jour">
+                <ScalarProperty Name="Jour1" ColumnName="Jour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModeFormations">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.ModeFormation">
+              <MappingFragment StoreEntitySet="ModeFormation">
+                <ScalarProperty Name="IdMF" ColumnName="IdMF" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="NumeroModule" ColumnName="NumeroModule" />
+                <ScalarProperty Name="CodeModule" ColumnName="CodeModule" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleFilieres">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.ModuleFiliere">
+              <MappingFragment StoreEntitySet="ModuleFiliere">
+                <ScalarProperty Name="IdMF" ColumnName="IdMF" />
+                <ScalarProperty Name="CodeFiliere" ColumnName="CodeFiliere" />
+                <ScalarProperty Name="NumeroModule" ColumnName="NumeroModule" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+                <ScalarProperty Name="MasseHoraire" ColumnName="MasseHoraire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Niveaux">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Niveau">
+              <MappingFragment StoreEntitySet="Niveau">
+                <ScalarProperty Name="CodeNiveau" ColumnName="CodeNiveau" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realisations">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Realisation">
+              <MappingFragment StoreEntitySet="Realisation">
+                <ScalarProperty Name="IdRealisation" ColumnName="IdRealisation" />
+                <ScalarProperty Name="DateRealisation" ColumnName="DateRealisation" />
+                <ScalarProperty Name="IdET" ColumnName="IdET" />
+                <ScalarProperty Name="NumeroModule" ColumnName="NumeroModule" />
+                <ScalarProperty Name="Contenu" ColumnName="Contenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stagiaires">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.Stagiaire">
+              <MappingFragment StoreEntitySet="Stagiaire">
+                <ScalarProperty Name="NumInscription" ColumnName="NumInscription" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="NumeroGroupe" ColumnName="NumeroGroupe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeFormations">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.TypeFormation">
+              <MappingFragment StoreEntitySet="TypeFormation">
+                <ScalarProperty Name="IdTF" ColumnName="IdTF" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Absence" TypeName="db_cahier_texteModel.Absence" StoreEntitySet="Absence">
+            <EndProperty Name="Realisation">
+              <ScalarProperty Name="IdRealisation" ColumnName="IdRealisation" />
+            </EndProperty>
+            <EndProperty Name="Stagiaire">
+              <ScalarProperty Name="NumInscription" ColumnName="NumInscription" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="db_cahier_texteModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

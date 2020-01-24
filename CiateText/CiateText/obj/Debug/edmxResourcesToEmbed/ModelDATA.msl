@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_cahier_texteModelStoreContainer" CdmEntityContainer="db_cahier_texteEntities">
+    <EntitySetMapping Name="Affectations">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Affectation">
+        <MappingFragment StoreEntitySet="Affectation">
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="NumeroGroupe" ColumnName="NumeroGroupe" />
+          <ScalarProperty Name="NumeroModule" ColumnName="NumeroModule" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DirectionRegionales">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.DirectionRegionale">
+        <MappingFragment StoreEntitySet="DirectionRegionale">
+          <ScalarProperty Name="IdDr" ColumnName="IdDr" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmploisTemps">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.EmploisTemp">
+        <MappingFragment StoreEntitySet="EmploisTemps">
+          <ScalarProperty Name="IdET" ColumnName="IdET" />
+          <ScalarProperty Name="Jour" ColumnName="Jour" />
+          <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
+          <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="NumeroGroupe" ColumnName="NumeroGroupe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Etablissements">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Etablissement">
+        <MappingFragment StoreEntitySet="Etablissement">
+          <ScalarProperty Name="IdEtablissement" ColumnName="IdEtablissement" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="IdDr" ColumnName="IdDr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Filieres">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Filiere">
+        <MappingFragment StoreEntitySet="Filiere">
+          <ScalarProperty Name="CodeFiliere" ColumnName="CodeFiliere" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="CodeNiveau" ColumnName="CodeNiveau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Formateurs">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Formateur">
+        <MappingFragment StoreEntitySet="Formateur">
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="Cin" ColumnName="Cin" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groupes">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Groupe">
+        <MappingFragment StoreEntitySet="Groupe">
+          <ScalarProperty Name="NumeroGroupe" ColumnName="NumeroGroupe" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+          <ScalarProperty Name="IdTF" ColumnName="IdTF" />
+          <ScalarProperty Name="IdMF" ColumnName="IdMF" />
+          <ScalarProperty Name="IdEtablissement" ColumnName="IdEtablissement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jours">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Jour">
+        <MappingFragment StoreEntitySet="Jour">
+          <ScalarProperty Name="Jour1" ColumnName="Jour" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModeFormations">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.ModeFormation">
+        <MappingFragment StoreEntitySet="ModeFormation">
+          <ScalarProperty Name="IdMF" ColumnName="IdMF" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modules">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Module">
+        <MappingFragment StoreEntitySet="Module">
+          <ScalarProperty Name="NumeroModule" ColumnName="NumeroModule" />
+          <ScalarProperty Name="CodeModule" ColumnName="CodeModule" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleFilieres">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.ModuleFiliere">
+        <MappingFragment StoreEntitySet="ModuleFiliere">
+          <ScalarProperty Name="IdMF" ColumnName="IdMF" />
+          <ScalarProperty Name="CodeFiliere" ColumnName="CodeFiliere" />
+          <ScalarProperty Name="NumeroModule" ColumnName="NumeroModule" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+          <ScalarProperty Name="MasseHoraire" ColumnName="MasseHoraire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Niveaux">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Niveau">
+        <MappingFragment StoreEntitySet="Niveau">
+          <ScalarProperty Name="CodeNiveau" ColumnName="CodeNiveau" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Realisations">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Realisation">
+        <MappingFragment StoreEntitySet="Realisation">
+          <ScalarProperty Name="IdRealisation" ColumnName="IdRealisation" />
+          <ScalarProperty Name="DateRealisation" ColumnName="DateRealisation" />
+          <ScalarProperty Name="IdET" ColumnName="IdET" />
+          <ScalarProperty Name="NumeroModule" ColumnName="NumeroModule" />
+          <ScalarProperty Name="Contenu" ColumnName="Contenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stagiaires">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.Stagiaire">
+        <MappingFragment StoreEntitySet="Stagiaire">
+          <ScalarProperty Name="NumInscription" ColumnName="NumInscription" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="NumeroGroupe" ColumnName="NumeroGroupe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeFormations">
+      <EntityTypeMapping TypeName="db_cahier_texteModel.TypeFormation">
+        <MappingFragment StoreEntitySet="TypeFormation">
+          <ScalarProperty Name="IdTF" ColumnName="IdTF" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Absence" TypeName="db_cahier_texteModel.Absence" StoreEntitySet="Absence">
+      <EndProperty Name="Realisation">
+        <ScalarProperty Name="IdRealisation" ColumnName="IdRealisation" />
+      </EndProperty>
+      <EndProperty Name="Stagiaire">
+        <ScalarProperty Name="NumInscription" ColumnName="NumInscription" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

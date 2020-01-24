@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d681c59202546818efc4ccca815475f" Name="Diagram1" ZoomLevel="91">
+        <EntityTypeShape EntityType="db_cahier_texteModel.Affectation" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.DirectionRegionale" Width="1.5" PointX="4.625" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.EmploisTemp" Width="1.5" PointX="12.125" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Etablissement" Width="1.5" PointX="4.375" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Filiere" Width="1.5" PointX="10" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Formateur" Width="1.5" PointX="8.625" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Groupe" Width="1.5" PointX="6.375" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Jour" Width="1.5" PointX="9.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.ModeFormation" Width="1.5" PointX="6.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Module" Width="1.5" PointX="10.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.ModuleFiliere" Width="1.5" PointX="12.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Niveau" Width="1.5" PointX="10.375" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Realisation" Width="1.5" PointX="13" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.Stagiaire" Width="1.5" PointX="8.125" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_cahier_texteModel.TypeFormation" Width="1.5" PointX="6.5" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Affectati__Matri__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Affectati__Numer__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Affectati__Numer__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Etablissem__IdDr__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__EmploisTe__Matri__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__EmploisTe__Numer__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__EmploisTem__Jour__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Realisatio__IdET__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Groupe__IdEtabli__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Filiere__CodeNiv__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__ModuleFil__CodeF__32E0915F" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="db_cahier_texteModel.FK__Groupe__IdMF__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Groupe__IdTF__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Stagiaire__Numer__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__ModuleFil__Numer__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="db_cahier_texteModel.FK__Realisati__Numer__47DBAE45" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="db_cahier_texteModel.Absence" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="db_cahier_texteModel.User" Width="1.5" PointX="4.5" PointY="4" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
