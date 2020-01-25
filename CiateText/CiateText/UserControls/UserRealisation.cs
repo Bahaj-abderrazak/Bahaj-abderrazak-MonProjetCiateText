@@ -57,22 +57,29 @@ namespace CiateText
             ///
             /// les Stagiaire
             /// 
-           var list = (from G in Login.db.Groupes
+            var list = (from G in Login.db.Groupes
                                  join S in Login.db.Stagiaires on G.NumeroGroupe equals S.NumeroGroupe
                                  where G.Nom == Nom
-                                 select new {S.NumInscription,S.Nom,S.Prenom,S.NumeroGroupe}
+                                 select new {S.NumInscription,S.Nom,S.Prenom,S.NumeroGroupe,S.Realisations,S.Groupe}
                                  ).ToList();
-            List<CustomerSTG> stgs = new List<CustomerSTG>();
-            foreach(var item in list)
+
+
+            List<Stagiaire> stgs = new List<Stagiaire>();
+            foreach (var item in list)
             {
-                stgs.Add(new CustomerSTG
+                stgs.Add(new Stagiaire
                 {
                     NumInscription = item.NumInscription,
-                    NomPrenom = item.Nom + " " + item.Prenom,
-                    NumeroGroupe=item.NumeroGroupe
+                    Nom = item.Nom,
+                    Prenom = item.Prenom,
+                    NumeroGroupe =item.NumeroGroupe,
+                    Groupe = item.Groupe,
+                    Realisations = item.Realisations
                 });
             }
             listSTG.DataSource = stgs;
+            listSTG.DisplayMember = "Nom";
+            listSTG.ValueMember = "NumInscription";
         }
 
         private void BtnValid_Click(object sender, EventArgs e)
@@ -100,51 +107,33 @@ namespace CiateText
             }
             else
             {
-                foreach (var item in listSTG.SelectedItems)
+                foreach(var s in listSTG.SelectedItems)
                 {
-                    string[] vs = ((CustomerSTG)item).NomPrenom.Split(' ');
-                    stgs.Add(new Stagiaire
-                    {
-                        Nom = vs[0],
-                        Prenom = vs[1],
-                        NumeroGroupe = ((CustomerSTG)item).NumeroGroupe,
-                        NumInscription = ((CustomerSTG)item).NumInscription
-                    });
+                    stgs.Add((Stagiaire)s);
                 }
-
-                Realisation realis = new Realisation
-                {
-                    Contenu = txtContenu.Text,
-                    Stagiaires = stgs,
-                    NumeroModule = int.Parse(CmbJour.SelectedValue + ""),
-                    IdET = int.Parse(CmbJour.SelectedValue + ""),
-                    DateRealisation = DTPDateRailisation.Value
-                };
-                Login.db.Realisations.Add(realis);
-                Login.db.SaveChanges();
-                //MessageBox.Show("Contenu  "+realis.Contenu + "  " +realis.DateRealisation+ "  " +realis.IdET+ "  " +realis.+ "  ");
-
             }
-            /*
+
+            Realisation realis = new Realisation
+            {
+                Contenu = txtContenu.Text,
+                Stagiaires = stgs,
+                NumeroModule = int.Parse(CmbJour.SelectedValue + ""),
+                IdET = int.Parse(CmbJour.SelectedValue + ""),
+                DateRealisation = DTPDateRailisation.Value
+            };
+            Login.db.Realisations.Add(realis);
+            Login.db.SaveChanges();
             try
             {
-                Login.db.Realisations.Add(new DATA.Realisation
-                {
-                    Contenu = txtContenu.Text,
-                    DateRealisation = DTPDateRailisation.Value,
-                    IdET = int.Parse(CmbJour.SelectedValue + ""),
-                    NumeroModule = int.Parse(CmbJour.SelectedValue + ""),
-                    Stagiaires = stgs,
-                    IdRealisation
-
-                });
+                Login.db.Realisations.Add(realis);
                 Login.db.SaveChanges();
                 MessageBox.Show(" vous avez réalisé ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {
                 MessageBox.Show("Error dans le enregistrement des informations ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }*/
+            }
+
         }
     }
 }

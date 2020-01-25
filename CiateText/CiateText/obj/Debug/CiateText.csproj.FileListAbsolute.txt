@@ -1,5 +1,4 @@
 C:\Users\bahaj\source\repos\CiateText\CiateText\obj\Debug\CiateText.CreateCahierTexte.resources
-C:\Users\bahaj\source\repos\CiateText\CiateText\obj\Debug\CiateText.CreatProfile.resources
 C:\Users\bahaj\source\repos\CiateText\CiateText\obj\Debug\CiateText.Login.resources
 C:\Users\bahaj\source\repos\CiateText\CiateText\obj\Debug\CiateText.Main.resources
 C:\Users\bahaj\source\repos\CiateText\CiateText\obj\Debug\CiateText.Properties.Resources.resources

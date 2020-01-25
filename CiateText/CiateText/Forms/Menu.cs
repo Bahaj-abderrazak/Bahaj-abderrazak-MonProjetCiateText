@@ -44,8 +44,9 @@ namespace CiateText
 
         private void BtnAller_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(LBox.SelectedValue+"");
             new Main(LBox.Text , LBox.SelectedValue+"").Show();
-            this.Hide();
+             this.Hide();
         }
 
         private void bunifuFlatButton3_Click(object sender, EventArgs e)

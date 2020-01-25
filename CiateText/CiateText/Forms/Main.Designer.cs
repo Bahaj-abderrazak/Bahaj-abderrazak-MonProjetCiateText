@@ -93,7 +93,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(238, 700);
+            this.panel1.Size = new System.Drawing.Size(50, 700);
             this.panel1.TabIndex = 2;
             // 
             // BtnImremierRe
@@ -365,9 +365,9 @@
             this.panel2.Controls.Add(this.Reduir);
             this.panel2.Controls.Add(this.Close);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(238, 0);
+            this.panel2.Location = new System.Drawing.Point(50, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(762, 47);
+            this.panel2.Size = new System.Drawing.Size(950, 47);
             this.panel2.TabIndex = 3;
             // 
             // lblTitle
@@ -399,7 +399,7 @@
             this.Size.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Size.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Size.ForeColor = System.Drawing.Color.White;
-            this.Size.Location = new System.Drawing.Point(711, 7);
+            this.Size.Location = new System.Drawing.Point(899, 7);
             this.Size.Name = "Size";
             this.Size.Size = new System.Drawing.Size(28, 30);
             this.Size.TabIndex = 6;
@@ -413,7 +413,7 @@
             this.Reduir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Reduir.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Reduir.ForeColor = System.Drawing.Color.White;
-            this.Reduir.Location = new System.Drawing.Point(680, -5);
+            this.Reduir.Location = new System.Drawing.Point(868, -5);
             this.Reduir.Name = "Reduir";
             this.Reduir.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.Reduir.Size = new System.Drawing.Size(25, 40);
@@ -428,7 +428,7 @@
             this.Close.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Close.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Close.ForeColor = System.Drawing.Color.Red;
-            this.Close.Location = new System.Drawing.Point(739, 5);
+            this.Close.Location = new System.Drawing.Point(927, 5);
             this.Close.Name = "Close";
             this.Close.Size = new System.Drawing.Size(25, 30);
             this.Close.TabIndex = 4;
@@ -440,9 +440,9 @@
             this.CONTAIN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.CONTAIN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CONTAIN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CONTAIN.Location = new System.Drawing.Point(238, 47);
+            this.CONTAIN.Location = new System.Drawing.Point(50, 47);
             this.CONTAIN.Name = "CONTAIN";
-            this.CONTAIN.Size = new System.Drawing.Size(762, 653);
+            this.CONTAIN.Size = new System.Drawing.Size(950, 653);
             this.CONTAIN.TabIndex = 4;
             // 
             // Main

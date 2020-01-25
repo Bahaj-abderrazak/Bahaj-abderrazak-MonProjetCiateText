@@ -167,6 +167,7 @@
             // 
             this.TxtCin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TxtCin.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TxtCin.Enabled = false;
             this.TxtCin.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.TxtCin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.TxtCin.HintForeColor = System.Drawing.Color.White;
@@ -274,6 +275,7 @@
             // 
             this.TxtMatricule.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TxtMatricule.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TxtMatricule.Enabled = false;
             this.TxtMatricule.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.TxtMatricule.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.TxtMatricule.HintForeColor = System.Drawing.Color.White;
@@ -409,6 +411,7 @@
             this.Controls.Add(this.label4);
             this.Name = "UserProfile";
             this.Size = new System.Drawing.Size(950, 653);
+            this.Load += new System.EventHandler(this.UserProfile_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

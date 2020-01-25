@@ -40,6 +40,7 @@ namespace CiateText
 
         private void Etap1_Load()
         {
+            IblEtape.Text = "Etape 1/3";
             GestionPanel(PanellEtap1, PanellEtap2, PanellEtap3);
             ///Derction Regionall
             CmbDrection.DataSource = Login.db.DirectionRegionales.ToList();
@@ -103,97 +104,104 @@ namespace CiateText
          ---------------------------------------------------------------------------------------------------
          */
 
+        /// Pour Le Direction Regionale
+        private void BTNDirection_Click(object sender, EventArgs e)
+        {
+           
+            if (RDCreate.Checked)
+            {
+                if (TxtAddressDR.Text == "") { MessageBox.Show("Remplir la Case Adresse Direction Regionales", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+                if (TxtNomDR.Text == "") { MessageBox.Show("Remplir la Case Nom Direction Regionales", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+                try
+                {
+                    Login.db.DirectionRegionales.Add(new DirectionRegionale
+                    {
+                        Nom = TxtNomDR.Text,
+                        Adresse = TxtAddressDR.Text
+                    });
+                    Login.db.SaveChanges();
+                    IdDR = Login.db.DirectionRegionales.Where(i => i.Nom == TxtNomDR.Text).Select(i => i.IdDr).FirstOrDefault();
+                    BTNDirection.Visible = false;
+                    BtnEtablissement.Visible = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Error dans l'enregistrement des informations Derction Regoinall ,Ce Derction Regoinall deja Exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+            }
+            else
+            {
+                if (CmbDrection.Items.Count == 0)
+                {
+                    MessageBox.Show("Pas De Items dans La direction Regoinall", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                IdDR = int.Parse(CmbDrection.SelectedValue + "");
+                BTNDirection.Visible = false;
+                BtnEtablissement.Visible = true;
+            }
+
+        }
+        /// /// /// /// Pour Le Etablissement
+        private void BTNEtablissement_Click(object sender, EventArgs e)
+        {
+            if (RDCreateEtab.Checked)
+            {
+                if (TxtAdressET.Text == "") { MessageBox.Show("Remplir le Case Adresse Etablessment", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+                if (TxtNomEt.Text == "") { MessageBox.Show("Remplir le Case Nom Etablessment", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
+
+
+                try
+                {
+                    Login.db.Etablissements.Add(new Etablissement
+                    {
+                        Nom = TxtNomEt.Text,
+                        Adresse = TxtAdressET.Text,
+                        IdDr = IdDR
+                    });
+                    Login.db.SaveChanges();
+                    IdEttab = Login.db.Etablissements.Where(i => i.Nom == TxtNomEt.Text).Select(i => i.IdEtablissement).FirstOrDefault();
+                    BtnEtablissement.Visible = false;
+                    BtnNext.Visible = true;
+                }
+                catch
+                {
+
+                    MessageBox.Show("Error dans l'enregistrement des informations Etablissement ,Ce Etablissement deja Exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+            else
+            {
+                if (CmbDrection.Items.Count == 0)
+                {
+                    MessageBox.Show("Pas De Items dans La Etablissement", "Warning");
+                    return;
+                }
+                IdEttab = int.Parse(CmbEtablessment.SelectedValue + "");
+                BtnEtablissement.Visible = false;
+                BtnNext.Visible = true;
+            }
+        }
+
+        /// /// /// Pour Le Group
         private void ValideEtap1_Click(object sender, EventArgs e)
         {
-
-            /// Pour Le Direction Regionale
-            if (GBFilier.Enabled == true)
-            {
-                if (RDCreate.Checked)
-                {
-                    if (TxtAddressDR.Text == "") { MessageBox.Show("Remplir la Case Adresse Direction Regionales", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
-                    if (TxtNomDR.Text == "") { MessageBox.Show("Remplir la Case Nom Direction Regionales", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
-                    try
-                    {
-                        Login.db.DirectionRegionales.Add(new DirectionRegionale
-                        {
-                            Nom = TxtNomDR.Text,
-                            Adresse = TxtAddressDR.Text
-                        });
-                        Login.db.SaveChanges();
-                        GBFilier.Enabled = false;
-                        IdDR = Login.db.DirectionRegionales.Where(i => i.Nom == TxtNomDR.Text).Select(i => i.IdDr).FirstOrDefault();
-
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error dans l'enregistrement des informations Derction Regoinall ,Ce Derction Regoinall deja Exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                }
-                else
-                {
-                    if (CmbDrection.Items.Count == 0)
-                    {
-                        MessageBox.Show("Pas De Items dans La direction Regoinall","Worning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    IdDR = int.Parse(CmbDrection.SelectedValue + "");
-                }
-            }
-
-            /// /// /// /// Pour Le Etablissement
-
-            if (Etablissement.Enabled == true)
-            {
-                if (RDCreateEtab.Checked)
-                {
-                    if (TxtAdressET.Text == "") { MessageBox.Show("Remplir le Case Adresse Etablessment", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
-                    if (TxtNomEt.Text == "") { MessageBox.Show("Remplir le Case Nom Etablessment", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information); return; }
-
-
-                    try
-                    {
-                        Login.db.Etablissements.Add(new Etablissement
-                        {
-                            Nom = TxtNomEt.Text,
-                            Adresse = TxtAdressET.Text,
-                            IdDr = IdDR
-                        });
-                        Login.db.SaveChanges();
-                        Etablissement.Enabled = false;
-                        IdEttab = Login.db.Etablissements.Where(i => i.Nom == TxtNomEt.Text).Select(i => i.IdEtablissement).FirstOrDefault();
-                    }
-                    catch
-                    {
-
-                        MessageBox.Show("Error dans l'enregistrement des informations Etablissement ,Ce Etablissement deja Exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                }
-                else
-                {
-                    if (CmbDrection.Items.Count == 0)
-                    {
-                        MessageBox.Show("Pas De Items dans La Etablissement", "Warning");
-                        return;
-                    }
-                    IdEttab = int.Parse(CmbEtablessment.SelectedValue + "");
-                }
-            }
-
-
-            /// /// /// Pour Le Group
-
             if (TxtNomGroup.Text == "")
             {
                 MessageBox.Show("Remplir La Case Nom de Groupe", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+            if(CmbGroupAnnee.Text == "")
+            {
+                MessageBox.Show("Choisir une année", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
            try
             {
-                annee =  int.Parse(CmbGroupDate.Text);
+                annee =  int.Parse(CmbGroupAnnee.Text);
 
                 Login.db.Groupes.Add(new Groupe
                 {
@@ -229,6 +237,7 @@ namespace CiateText
 
         private void Etap2_Load()
         {
+            IblEtape.Text = "Etape 2/3";
             GestionPanel(PanellEtap2, PanellEtap1, PanellEtap3);
             //Comobox Niveaux
             CmbNeveau.DataSource = Login.db.Niveaux.ToList();
@@ -245,13 +254,6 @@ namespace CiateText
          ---------------------------------------------------------------------------------------------------
          */
 
-        private void ListboxRempli()
-        {
-           
-            ListModule.DataSource = Login.db.Modules.ToList();
-            ListModule.DisplayMember = "Nom";
-            ListModule.ValueMember = "NumeroModule";
-        }
        
         /*
         ---------------------------------------------------------------------------------------------------
@@ -274,8 +276,7 @@ namespace CiateText
                         CodeNiveau = CmbNeveau.SelectedValue + ""
                     });
                     Login.db.SaveChanges();
-                    CodF = Login.db.Filieres.Where(i => i.Nom == TxtNomFilier.Text).Select(i => i.CodeFiliere).FirstOrDefault();
-                    MessageBox.Show("CodF" + CodF);
+                    CodF = TxtCodeFiliere.Text;
                 }
                 catch
                 {
@@ -286,7 +287,6 @@ namespace CiateText
             else
             {
                 CodF = CmbFilier.SelectedValue + "";
-                ListboxRempli();
             }
 
             GBModule.Visible = true;
@@ -337,7 +337,6 @@ namespace CiateText
                 });
                 Login.db.SaveChanges();
                 MessageBox.Show("Vous avez Ajouter ce Module", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ListboxRempli();
             }
             catch
             {
@@ -370,24 +369,12 @@ namespace CiateText
 
         private void Etap3_Load()
         {
+            IblEtape.Text = "Etape 3/3";
             GestionPanel(PanellEtap3, PanellEtap2, PanellEtap1);
-            MessageBox.Show(CodF);
             CmbMonModuls.DataSource = Login.db.Modules.ToList();
             CmbMonModuls.DisplayMember = "Nom";
             CmbMonModuls.ValueMember = "NumeroModule";
 
-            RemplirlistviewV2();
-
-        }
-
-        private void RemplirlistviewV2()
-        {
-            ListMonModuls.DataSource = (from M in Login.db.Modules
-                                        join MF in Login.db.ModuleFilieres on M.NumeroModule equals MF.NumeroModule
-                                        where MF.CodeFiliere == CodF
-                                        select new { MF.NumeroModule, M.Nom }).ToList();
-            ListMonModuls.DisplayMember = "Nom";
-            ListMonModuls.ValueMember = "NumeroModule";
         }
 
         /*
@@ -398,11 +385,20 @@ namespace CiateText
 
         private void BtnAyuterAModuleMonList_Click(object sender, EventArgs e)
         {
+            int MasH;
+            if (TxtMassHataire.Text == "" || !(int.TryParse(TxtMassHataire.Text, out MasH)))
+            {
+                MessageBox.Show("des Mass Hataire incorrect", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            int an;
+
+            if (RD_1er.Checked) an = 1; else if (RD_2em.Checked) an = 2; else an = 3;
             /// pour Affection
             int NumeroModule = int.Parse(CmbMonModuls.SelectedValue + "");
             try
             {
-                int annee = int.Parse(CmbGroupDate.Text);
+                int annee = int.Parse(CmbGroupAnnee.Text);
 
                 Login.db.Affectations.Add(new Affectation
                 {
@@ -419,19 +415,8 @@ namespace CiateText
                 return;
             }
 
-            int MasH;
-            if (TxtMassHataire.Text == "" || !(int.TryParse(TxtMassHataire.Text, out MasH)))
-            {
-                MessageBox.Show("des Mass Hataire incorrect", "Worning", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            int an;
-
-            if (RD_1er.Checked) an = 1; else if (RD_2em.Checked) an = 2; else an = 3;
-
             try
             {
-
                 Login.db.ModuleFilieres.Add(new ModuleFiliere
                 {
                     Annee = an,
@@ -442,8 +427,7 @@ namespace CiateText
                         
                 });
                 Login.db.SaveChanges();
-                ListMonModuls.Items.Add(new { nom = CmbMonModuls.Text + " :   Masse Horaire : " + TxtMassHataire.Text});
-                RemplirlistviewV2();
+                MessageBox.Show("Vous avez Ajouter ce Module", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {

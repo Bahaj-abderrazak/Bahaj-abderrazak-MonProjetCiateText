@@ -74,6 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Reports\CRRealistion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRRealistion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DATA\DataSet.cs">
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Compile>
@@ -91,7 +97,6 @@
     <Compile Include="DATA\Affectation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DATA\CustomerSTG.cs" />
     <Compile Include="DATA\DirectionRegionale.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -158,12 +163,6 @@
     <Compile Include="Forms\CreateCahierTexte.Designer.cs">
       <DependentUpon>CreateCahierTexte.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CreatProfile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CreatProfile.Designer.cs">
-      <DependentUpon>CreatProfile.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,15 +225,16 @@
     <Compile Include="UserControls\UserRealisationImpre.Designer.cs">
       <DependentUpon>UserRealisationImpre.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\CRRealistion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRRealistion.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\CREmplois.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CREmplois.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateCahierTexte.resx">
       <DependentUpon>CreateCahierTexte.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CreatProfile.resx">
-      <DependentUpon>CreatProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -317,6 +317,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="DATA\DataBase.sql" />
     <Content Include="DATA\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

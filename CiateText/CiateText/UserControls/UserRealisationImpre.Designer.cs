@@ -41,7 +41,6 @@
             this.CRV.Name = "CRV";
             this.CRV.Size = new System.Drawing.Size(950, 653);
             this.CRV.TabIndex = 1;
-            this.CRV.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // UserRealisationImpre
             // 
@@ -51,6 +50,7 @@
             this.Controls.Add(this.CRV);
             this.Name = "UserRealisationImpre";
             this.Size = new System.Drawing.Size(950, 653);
+            this.Load += new System.EventHandler(this.UserRealisationImpre_Load);
             this.ResumeLayout(false);
 
         }

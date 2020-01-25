@@ -50,5 +50,14 @@ namespace CiateText
 
 
         }
+
+        private void UserProfile_Load(object sender, EventArgs e)
+        {
+            DATA.Formateur formateur = Login.db.Formateurs.FirstOrDefault();
+            TxtCin.Text = formateur.Matricule+"";
+            TxtMatricule.Text = formateur.Cin;
+            TxtNom.Text = formateur.Nom;
+            TxtPrenom.Text = formateur.Prenom;
+        }
     }
 }
