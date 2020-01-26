@@ -195,6 +195,29 @@ BEGIN
 	WHERE G.Nom LIKE @NomGroup
 	return 0
 END
+GO
+
+
+
+CREATE PROCEDURE PS_REALISATION
+(
+	@NomGroup NVARCHAR(99)
+)
+As
+BEGIN
+	SELECT Et.Nom,DR.Nom,G.Nom,G.Annee,AF.Matricule,M.Nom,M.CodeModule,R.IdRealisation,R.DateRealisation,R.Contenu
+	FROM DirectionRegionale DR 
+		INNER JOIN Etablissement AS Et ON Et.IdDr = DR.IdDr
+		INNER JOIN Groupe AS G ON G.IdEtablissement = Et.IdEtablissement
+		INNER JOIN Affectation AS AF ON AF.NumeroGroupe = G.NumeroGroupe
+		INNER JOIN Module AS M ON AF.NumeroModule = M.NumeroModule
+		INNER JOIN Realisation AS R ON R.NumeroModule = M.NumeroModule
+	WHERE G.Nom LIKE @NomGroup
+	return 0
+END
+
+GO
+
 
 
 SELECT * FROM Absence
